@@ -3,5 +3,14 @@
 version = 3
 
 [[package]]
+name = "morse"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "007df9e3d40e94fa47ebcd566cea59858474021445690672ef64fefce8892b5c"
+
+[[package]]
 name = "morse_translator"
 version = "0.1.0"
+dependencies = [
+ "morse",
+]

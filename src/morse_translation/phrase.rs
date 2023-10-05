@@ -1,5 +1,5 @@
 use std::fmt;
-use crate::morse_translation::word::*;
+use crate::morse_translation::word::word::Word;
 
 #[derive(PartialEq, Debug)]
 pub struct Phrase(Vec<Word>);
@@ -53,7 +53,7 @@ impl fmt::Display for Phrase {
 #[cfg(test)]
 mod tests {
     use super::Phrase;
-    use crate::morse_translation::{letter::{Letter, Symbol}, word::Word};
+    use crate::morse_translation::{letter::{Letter, Symbol}, word::word::Word};
     
     #[test]
     fn compose_phrase() {

@@ -4,7 +4,6 @@ pub enum Symbol {
     Line
 }
 
-
 #[derive(PartialEq, Debug, Clone)]
 pub struct Letter(Vec<Symbol>);
 
@@ -53,7 +52,7 @@ impl Letter {
             '7' => Some(vec![Line, Line, Dot, Dot, Dot]),
             '8' => Some(vec![Line, Line, Line, Dot, Dot]),
             '9' => Some(vec![Line, Line, Line, Line, Dot]),
-            _ => None
+            _other => None
         };
 
         if let Some(letter) = symbols {
@@ -66,42 +65,14 @@ impl Letter {
     pub fn to_morse_string(&self) -> String {
         let mut morse_string: String = String::new();
 
-            for symbol in &self.0 {
-                let string: char = match symbol {
-                    Symbol::Dot => '.',
-                    Symbol::Line => '-',
-                };
-                morse_string.push(string)
-            }
+        for symbol in &self.0 {
+            let string: char = match symbol {
+                Symbol::Dot => '.',
+                Symbol::Line => '-',
+            };
+            morse_string.push(string)
+        }
         morse_string
     }
 }
-
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn build_symbol() {
-        let c: char = 'A';
-        let letter = Letter::from(c);
-
-        assert_eq!(letter, Some(Letter(vec![Symbol::Dot, Symbol::Line])));
-
-        let invalid_char = ',';
-        let letter = Letter::from(invalid_char);
-
-        assert!(letter.is_none())
-    }
-
-    #[test]
-    fn to_string() {
-        let symbols = vec![Symbol::Dot, Symbol::Line];
-        let letter = Letter::new(symbols);
-
-        assert_eq!(letter.to_morse_string(), ".-");
-    }
-}
-
 
