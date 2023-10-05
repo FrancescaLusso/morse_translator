@@ -76,3 +76,20 @@ impl Letter {
     }
 }
 
+#[cfg(test)]
+mod tests {
+    use super::{Symbol, Letter};
+
+    #[test]
+    fn build_letter() {
+        let letter = Letter::from('A');
+        let invalid_char = Letter::from(',');
+        let symbols = Some(
+            Letter::new(vec![Symbol::Dot, Symbol::Line])
+        );
+
+        assert_eq!(letter, symbols);
+        assert!(invalid_char.is_none());
+        assert_eq!(letter.unwrap().to_morse_string(), ".-")
+    }
+}
